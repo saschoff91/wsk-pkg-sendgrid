@@ -1,6 +1,18 @@
 Openwhisk Sendgrid Package
 ============================
 
+```
+wsk-pkg-sendgrid/
+├── Getting started
+│   └── Create Sendgrid Account
+├── Actions
+│   └── Send Email
+├── Deploy Locally
+├── Further Work
+├── Contributing
+├── License
+```
+
 This repository includes actions and feeds for [IBM Bluemix](http://www.ibm.com/cloud-computing/bluemix/) service Sendgrid. 
 
 The whole communication is based on the [Sendgrd REST API](https://sendgrid.com/docs/API_Reference/index.html).
