@@ -3,7 +3,7 @@ Openwhisk Sendgrid Package
 
 This repository includes actions and feeds for [IBM Bluemix](http://www.ibm.com/cloud-computing/bluemix/) service Sendgrid. 
 
-The whole communication is based on the [Twilio REST API](https://www.twilio.com/docs/api/rest).
+The whole communication is based on the [Sendgrd REST API](https://sendgrid.com/docs/API_Reference/index.html).
 
 ## Getting Started:
 Before using this package, following preparations must be done:
@@ -13,7 +13,7 @@ Before using this package, following preparations must be done:
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | `/whisk.system/sendgrid` | package | apikey | Sendgrid Package |
-| `/whisk.system/twilio/sendMail` | action | see action [details](https://github.com/saschoff91/wsk-pkg-sendgrid/blob/master/actions/sendMail.js) | send mail to multiply receiver |
+| `/whisk.system/sendgrid/sendMail` | action | see action [details](https://github.com/saschoff91/wsk-pkg-sendgrid/blob/master/actions/sendMail.js) | send mail to multiply receiver |
 
 
 
