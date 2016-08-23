@@ -70,7 +70,6 @@ cd wsk-pkg-sendgrid
 ```
 
 # Further Work
-* Replace the restful api communication to sendgrid node library, [pull request](https://github.com/openwhisk/openwhisk/pull/829) already exist
 * More actions and functionality must implemented
 * Add support of IBM Bluemix Sendgrid Service 
 * Implement test cases with real test account
