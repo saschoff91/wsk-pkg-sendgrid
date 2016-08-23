@@ -19,9 +19,10 @@ notifications:
 install: true
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_21cc9898b537_key -iv $encrypted_21cc9898b537_iv -in tests/credentials.json.enc -out tests/credentials.json -d
   - git clone https://github.com/openwhisk/openwhisk.git
   - cd openwhisk
-  - ./tools/travis/setup.sh
+- ./tools/travis/setup.sh
 
 script:
 - ../tools/travis/build.sh
