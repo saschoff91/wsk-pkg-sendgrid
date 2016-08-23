@@ -26,7 +26,7 @@ import scala.collection.immutable.HashMap
 import org.scalatest.FlatSpecLike
 
 @RunWith(classOf[JUnitRunner])
-class TemplateTests extends TestHelpers with WskTestHelpers with Matchers {
+class SendgridTests extends TestHelpers with WskTestHelpers with Matchers {
 
   implicit val wskprops = WskProps()
   val wsk = new Wsk()
