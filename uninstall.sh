@@ -16,4 +16,6 @@ echo Uninstalling Sendgrid Package \
 
 $WSK_CLI --apihost $APIHOST action delete --auth $AUTH sendgrid/sendMail
 
+$WSK_CLI --apihost $APIHOST action delete --auth $AUTH sendgrid/sendgridFeed
+
 $WSK_CLI --apihost $APIHOST package delete --auth $AUTH sendgrid

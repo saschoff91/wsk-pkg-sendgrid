@@ -24,3 +24,7 @@ $WSK_CLI --apihost $APIHOST action update --auth $AUTH --shared yes sendgrid/sen
     -a parameters '[{"name":"apikey","required":true,"bindTime":true,"type":"password","description":"Sendgrid account api key"},{"name":"to","required":true,"bindTime":false,"description":"Email from receiver"},{"name":"from","required":true,"bindTime":false,"description":"Email from sender"},{"name":"message","required":true,"bindTime":false,"description":"Email content"},{"name":"subject","required":false,"bindTime":false,"description":"Mail subject"},{"name":"contentType","required":false,"bindTime":false,"description":"Email contentType, e.g. text/plain"},{"name":"cc","required":false,"bindTime":false,"description":"Comma seperated list of receiver emails"}]'    \
     -a sampleInput '{"apikey":"XXXXXX","to":"YYYYYY","from":"WWWWWW","subject":"UUUUUU","message":"ZZZZZZ","cc":"receiver1@example.de, receiver2@example.de, receiver3@example.de"}' \
 -a sampleOutput '{"result": "Mail send successful! "}'
+
+$WSK_CLI --apihost $APIHOST action update --auth $AUTH --shared yes sendgrid/sendgridFeed $PACKAGE_HOME/feeds/sendgridFeed.js \
+-a description 'Create feed action for trigger lifecycle events' \
+
