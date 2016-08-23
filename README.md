@@ -10,7 +10,7 @@ wsk-pkg-sendgrid/
 ├── Deploy Locally
 ├── Further Work
 ├── Contributing
-├── License
+├── License 
 ```
 
 This repository includes actions and feeds for [IBM Bluemix](http://www.ibm.com/cloud-computing/bluemix/) service Sendgrid. 
