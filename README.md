@@ -56,7 +56,7 @@ wsk package update sendgrid -p apikey '<apikey>' -p appURL '<triggerProvider>'
 ```
 
 #### Send Email 
-`/whisk.system/sendgrid/sms` create a email and send it to multiply receivers
+`/whisk.system/sendgrid/sendMail` create a email and send it to multiply receivers
 
 | **Parameter** | **Type** | **Required** | **Description** | **Default** | **Example** |
 | ------------- | ---- | -------- | ------------ | ------- |------- |
