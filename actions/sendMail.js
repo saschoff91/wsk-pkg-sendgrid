@@ -22,7 +22,7 @@ var request = require('request');
  * @param      {string}  to                  		(required)  Mail adress of receiver, like test@ibm.com
  * @param      {string}  from                       (required)  Mail adress of sender
  * @param      {string}  message                    (required)  Mail content
- * @param      {string}  subject                    (optional)  Mail subject
+ * @param      {string}  subject                    (required)  Mail subject
  * @param      {string}  contentType                (optional)  Mail content type, e.g. text/plain
  * @param      {string}  cc 		                (optional)  Multiply mail receiver, seperated with a comma
  * @return     {Object}                                         Done with the result of invocation
@@ -32,7 +32,7 @@ var request = require('request');
 function main(params) {
 	console.log(params);
 
-	var requiredParams = ["apikey", "to", 'from', 'message'];
+	var requiredParams = ['apikey', 'to', 'from', 'message', 'subject'];
 
 	var contentType = params.contentType || "text/plain";
 
