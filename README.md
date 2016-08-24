@@ -8,6 +8,9 @@ wsk-pkg-sendgrid/
 │   └── Create Sendgrid Account
 ├── Actions
 │   └── Send Email
+├── Feed
+│   └── Create Trigger
+│       ├── Event Type
 ├── Deploy Locally
 ├── Further Work
 ├── Contributing
@@ -22,18 +25,34 @@ The whole communication is based on the [Sendgrd REST API](https://sendgrid.com/
 Before using this package, following preparations must be done:
   1. Create a [Sendgrid](sendgrid.com) account to get the apikey from [here](https://app.sendgrid.com/settings/api_keys)
   2. Create a general apikey if it's not existing and assign permissions to it.
+  3. Go to Mail Settings [here](https://app.sendgrid.com/settings/mail_settings) and enable Event Notification.
+  4. Fullfill all required parameters, e.g. HTTP POST URL and action types, who fires the POST request to your trigger provider
+  5. Create a node application, which acts as a trigger provider.
+  6. Create a cloudant instance to provide a storage for trigger.
+  7. Bind the cloudant instance to node application, via application dashboard.
+  8. Modify /feeds/TriggerProvider/app.js file and fill in your message hub instance name
+
+``` javascript
+var cloudant = appEnv.getServiceCreds('Cloudant-instance');
+``` 
+  9. Deploy the created node application with file from /feeds/TriggerProvider/ with 
+``` 
+/<PATH_TO_NODE_FILES>$ cf push
+```
+  ***Note:*** If you cloned this repository and deploy the application with /feeds/TriggerProvider/, change the application name in manifest.yml before. 
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | `/whisk.system/sendgrid` | package | apikey | Sendgrid Package |
 | `/whisk.system/sendgrid/sendMail` | action | see action [details](https://github.com/saschoff91/wsk-pkg-sendgrid/blob/master/actions/sendMail.js) | send mail to multiply receiver |
+| `/whisk.system/sendgrid/sendgridFeed` | action | see action [details](https://github.com/saschoff91/wsk-pkg-sendgrid/blob/master/feeds/sendgridFeed.js) |Trigger lifecycle feed |
 
 
 
 ## Actions:
-To bind parameters to the package perform following command.
+To bind parameters to the package perform following command ( appURL without 'http://')
 ```bash
-wsk package update sendgrid -p apikey '<apikey>'
+wsk package update sendgrid -p apikey '<apikey>' -p appURL '<triggerProvider>'
 ```
 
 #### Send Email 
@@ -59,6 +78,41 @@ Example of success response:
 {
     "result": "Mail send successful! "
 }
+```
+## Feed
+#### Create trigger
+`/whisk.system/sendgrid/sendgridFeed` is an action, which handle the trigger lifecycle (create, delete) for Sendgrid Service.
+Each trigger must listen on a Sendgrid-based Action, e.g. open, process.
+To get a full overview of all supported Sendgrid-based Actions hava a look [here](https://sendgrid.com/docs/API_Reference/Webhooks/event.html)
+
+Independent from the choosen event type, you must configure the callback webhook url in your sendgrid account manually.
+The API doesnt provide any functionality to do it.
+
+Move to: Mail Settings -> Event Notification -> HTTP POST URL -> Fullfill webhook request url 
+```text
+ http://<TriggerProvider>.mybluemix.net/eventincoming
+```
+
+  ***Recommondation:*** In chapter "Select Actions" choose "All". It is only possible to define one configuration for the whole sendgrid account.  
+ 
+Now the sendgrid account is able to perform a webhook request to your node application to fire a whisk trigger with Sendgrid-based action details.
+
+| **Parameter** | **Type** | **Required** | **Description** | **Default** | **Example** |
+| ------------- | ---- | -------- | ------------ | ------- |------- |
+| actionType | *string* | yes |  Sendgrid-based Action | - | "open" |
+| feed | *string* | yes |  Feed action | - | "sendgrid/sendgridFeed" |
+
+##### Usage
+```bash
+wsk trigger create <triggerName> -p actionType 'actionType'  --feed sendgrid/sendgridFeed
+```
+
+Example of success response:
+```javascript
+{
+    "result": "done creation"
+}
+
 ```
 
 
