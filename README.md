@@ -8,7 +8,7 @@ wsk-pkg-sendgrid/
 │   └── Create Sendgrid Account
 ├── Actions
 │   └── Send Email
-├── Feed
+├── Feeds
 │   └── Create Trigger
 │       ├── Event Type
 ├── Deploy Locally
@@ -63,7 +63,7 @@ wsk package update sendgrid -p apikey '<apikey>' -p appURL '<triggerProvider>'
 | to | *string* | yes |  Number from receiver | - | "XXXXX@XX.com" |
 | from | *string* | yes |  Email from sender | - | "YYYYY@YY.com" |
 | message | *string* | yes |  Message text content  | - | "ZZZZZ" |
-| subject | *string* | no |  Subject of the email | - | "WWWWW" |
+| subject | *string* | yes |  Subject of the email | - | "WWWWW" |
 | contentType | *string* | no |  Content type of email | text/plain | - |
 | cc | *string* | no |  CC header of mail, comma seperated email receivers| - | "test1@example.com,test2@example.com" |
 
